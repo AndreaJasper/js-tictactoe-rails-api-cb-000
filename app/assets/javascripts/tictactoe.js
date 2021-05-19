@@ -20,7 +20,7 @@ function updateState(td) {
 }
 
 function setMessage(str) {
-  $("#message").text(str)  
+  $("#message").text(str)
 }
 
 function populateBoard(array) {
@@ -114,7 +114,7 @@ function playerTokens(token) {
 function playerWon(token) {
   let tokens = playerTokens(token)
   let winner = false
-  
+
   WIN_COMBINATIONS.forEach(function(game){
     if(game.every((val) => tokens.includes(val)) == true) {
       winner = true
@@ -133,7 +133,7 @@ function clearBoard() {
 
 function doTurn(token) {
   updateState(token);
-  
+
   if(checkWinner()){
     saveGame();
     clearBoard();
@@ -151,22 +151,22 @@ $(document).ready(function() {
 });
 
 function attachListeners() {
-  
+
   $('td').on('click', function() {
     if (!$.text(this) && !checkWinner()) {
       doTurn(this);
     }
   });
-  
+
   $('#clear').on('click', function() {
     clearBoard();
   });
-  
+
   $('#previous').on('click', function() {
     previousGames();
   });
-  
+
   $('#save').on('click', function() {
     saveGame(this);
-  });  
+  });
 }
